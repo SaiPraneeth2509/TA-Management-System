@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TA Applicant Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+      }
+      footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto; /* Pushes footer to the bottom */
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+        color: #6c757d;
+      }
+      /* Header Styling */
+      header {
+        display: flex;
+        align-items: center;
+        background-color: #104279; /* University Blue */
+        color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      }
+
+      header img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      header .university-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* Container Styling */
+      .container {
+        background-color: #f8f9fa; /* Light background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      }
+
+      /* Dashboard Title */
+      h1 {
+        color: #104279;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      /* Welcome Message */
+      .welcome-message {
+        font-size: 18px;
+        color: #104279;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      /* Logout Button */
+      .btn-danger {
+        font-weight: bold;
+      }
+
+      /* Nav Tabs Styling */
+      .nav-tabs .nav-link {
+        color: #104279;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      .nav-tabs .nav-link.active,
+      .nav-tabs .nav-link:hover {
+        background-color: #104279;
+        color: white;
+        border-color: #104279;
+      }
+
+      /* Block Content Styling */
+      .mt-4 {
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- University Name Header -->
+    <header>
+      <img
+        src="https://banner2.cleanpng.com/20180623/srq/kisspng-florida-atlantic-university-florida-atlantic-owls-5b2df357a81f04.2104944515297380716886.jpg"
+        alt="University Logo"
+      />
+      <div class="university-title">Florida Atlantic University</div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <div class="container mt-5">
+      <!-- Dashboard Title and Logout Button -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1>TA Applicant Dashboard</h1>
+          <div class="welcome-message">Welcome, {{ user.username }}</div>
+        </div>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <ul class="nav nav-tabs mt-3">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'submit_application' %}"
+            >Submit Application</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'track_applications' %}"
+            >Track Applications</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'respond_to_offer' %}"
+            >Submit Response</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+    <footer><p>© 2024 Florida Atlantic University</p></footer>
+  </body>
+</html>

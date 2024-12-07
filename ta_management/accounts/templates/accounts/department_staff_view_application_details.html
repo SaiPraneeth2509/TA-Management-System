@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        background-color: #104279; /* University Blue */
+        color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      }
+
+      header img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      header .university-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+
+      .section-title {
+        margin-top: 30px;
+        font-weight: bold;
+        color: #104279;
+      }
+
+      .back-link {
+        margin-top: 20px;
+      }
+
+      footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto; /* Pushes footer to the bottom */
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <img
+        src="https://banner2.cleanpng.com/20180623/srq/kisspng-florida-atlantic-university-florida-atlantic-owls-5b2df357a81f04.2104944515297380716886.jpg"
+        alt="University Logo"
+      />
+      <div class="university-title">Florida Atlantic University</div>
+    </header>
+
+    <!-- Content -->
+    <div class="container">
+      <h2 class="section-title">Application Details</h2>
+
+      <h3 class="section-title">Your Application Details</h3>
+      <p><strong>Name:</strong> {{ full_name }}</p>
+      <p><strong>Z-Number:</strong> {{ z_number }}</p>
+      <p><strong>Previous Experience:</strong> {{ previous_experience }}</p>
+
+      <h4 class="section-title">Course Applied:</h4>
+      {% if courses %}
+      <ul class="list-group">
+        {% for course in courses %}
+        <li class="list-group-item">{{ course.name }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>No course applied.</p>
+      {% endif %}
+
+      <p>
+        <strong>Resume:</strong>
+        <a href="{{ resume.url }}" target="_blank" class="btn btn-link"
+          >Download Resume</a
+        >
+      </p>
+
+      <a
+        href="{% url 'department_staff_view_applications' %}"
+        class="btn btn-secondary back-link"
+      >
+        Back to Applications List
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer><p>© 2024 Florida Atlantic University</p></footer>
+  </body>
+</html>

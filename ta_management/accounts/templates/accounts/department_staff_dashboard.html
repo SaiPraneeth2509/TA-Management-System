@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Department Staff Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        background-color: #104279; /* University Blue */
+        color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      }
+
+      header img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      header .university-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 20px;
+      }
+
+      .navbar .navbar-brand {
+        font-weight: bold;
+      }
+
+      .navbar-nav {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-nav .nav-link {
+        margin-right: 15px;
+        color: black;
+        text-decoration: none;
+      }
+
+      .navbar-nav .nav-link:hover {
+        text-decoration: underline;
+      }
+
+      .navbar-nav .welcome-message {
+        margin-right: 15px;
+        color: black;
+        font-weight: bold;
+      }
+
+      hr {
+        margin: 20px 0;
+        border-top: 1px solid #ddd;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+      }
+
+      .course-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .course-list li {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .course-list button {
+        margin-left: 10px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+      footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto; /* Pushes footer to the bottom */
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <img
+        src="https://banner2.cleanpng.com/20180623/srq/kisspng-florida-atlantic-university-florida-atlantic-owls-5b2df357a81f04.2104944515297380716886.jpg"
+        alt="University Logo"
+      />
+      <div class="university-title">Florida Atlantic University</div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Department Staff Dashboard</a>
+        <span class="welcome-message">Welcome, {{ user.username }}!</span>
+        <div class="navbar-nav ms-auto">
+          <a
+            href="{% url 'department_staff_view_applications' %}"
+            class="nav-link"
+            >View Applications</a
+          >
+          <a
+            href="{% url 'department_staff_forwarded_applications' %}"
+            class="nav-link"
+            >Forwarded Applications</a
+          >
+          <a href="{% url 'department_staff_performance' %}" class="nav-link"
+            >Performance Metrics</a
+          >
+          <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <hr />
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Add New Course Form -->
+      <h4>Manage Courses</h4>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="course_name">Course Name:</label>
+          <input
+            type="text"
+            id="course_name"
+            name="course_name"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" name="add_course" class="btn btn-primary">
+          Add Course
+        </button>
+      </form>
+
+      <!-- Available Courses -->
+      <br />
+      <h4>Available Courses</h4>
+      <ul class="course-list">
+        {% for course in courses %}
+        <li>
+          <span>{{ course.name }}</span>
+          <form method="POST" style="display: inline">
+            {% csrf_token %}
+            <input type="hidden" name="course_id" value="{{ course.id }}" />
+            <button
+              type="submit"
+              name="remove_course"
+              value="{{ course.id }}"
+              class="btn btn-danger btn-sm"
+            >
+              Remove
+            </button>
+          </form>
+        </li>
+        {% empty %}
+        <p>No available courses to display.</p>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+  <footer><p>© 2024 Florida Atlantic University</p></footer>
+</html>

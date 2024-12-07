@@ -1,0 +1,48 @@
+<h2>Assign TA to Course</h2>
+
+<!-- Application Details Section -->
+<div>
+  <h3>TA Details</h3>
+  <p><strong>Name:</strong> {{ application.full_name }}</p>
+  <p><strong>Z-Number:</strong> {{ application.z_number }}</p>
+  <p>
+    <strong>Previous Experience:</strong> {{ application.previous_experience }}
+  </p>
+  <p><strong>Courses Applied For:</strong></p>
+  <ul>
+    {% for course in application.courses.all %}
+    <li>{{ course.name }}</li>
+    {% empty %}
+    <li>No courses applied.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Assignment Form Section -->
+<form method="POST" action="{% url 'assign_ta_to_course' application.id %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="course">Select a Course</label>
+    {% if available_courses %}
+    <select id="course" name="course" class="form-control" required>
+      {% for course in available_courses %}
+      <option value="{{ course.id }}">{{ course.name }}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+    <p>
+      No available courses. Please contact the Department Staff to add courses.
+    </p>
+    {% endif %}
+  </div>
+
+  {% if available_courses %}
+  <button type="submit" class="btn btn-success mt-3">Assign TA</button>
+  {% endif %}
+  <a href="{% url 'ta_committee_dashboard' %}" class="btn btn-secondary mt-3"
+    >Cancel</a
+  >
+</form>
+
+<!-- Logout Button -->
+<a href="{% url 'logout' %}" class="btn btn-danger mt-3">Logout</a>

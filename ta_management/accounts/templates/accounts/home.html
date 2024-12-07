@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Role Selection</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Background color and image */
+      body {
+        background-color: white; /* Blue background color */
+        background-image: url(""); /* Replace with your background image URL */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white; /* Text color to contrast with background */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      /* Header styling */
+      header {
+        display: flex;
+        align-items: center;
+        background-color: #104279; /* University Blue */
+        color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+      }
+
+      header img {
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      header .university-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      header h1 {
+        background-color: #104279; /* Background color */
+        color: white;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      /* Container styling for content */
+      .container {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      h2 {
+        color: black; /* Ensure Login As is visible */
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .btn-block {
+        margin-bottom: 10px;
+        font-size: 18px;
+        padding: 15px;
+        text-align: center;
+      }
+
+      .btn-info {
+        background-color: #17a2b8;
+      }
+
+      .btn-warning {
+        background-color: #ffc107;
+      }
+
+      .btn-danger {
+        background-color: #dc3545;
+      }
+
+      .btn-secondary {
+        background-color: #6c757d;
+      }
+
+      /* Styling for buttons on hover */
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 10px;
+        margin-top: auto; /* Pushes footer to the bottom */
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with University Name -->
+    <header>
+      <img
+        src="https://banner2.cleanpng.com/20180623/srq/kisspng-florida-atlantic-university-florida-atlantic-owls-5b2df357a81f04.2104944515297380716886.jpg"
+        alt="University Logo"
+      />
+      <div class="university-title">Florida Atlantic University</div>
+    </header>
+
+    <div class="container mt-5">
+      <h2 class="text-center">Login As</h2>
+      <!-- Ensuring visibility of the text -->
+      <div class="row">
+        <div class="col-md-3">
+          <a
+            href="{% url 'signup' role='ta_applicant' %}"
+            class="btn btn-info btn-block"
+            >TA Applicant</a
+          >
+        </div>
+        <div class="col-md-3">
+          <a
+            href="{% url 'signup' role='department_staff' %}"
+            class="btn btn-warning btn-block"
+            >Department Staff/Administrator</a
+          >
+        </div>
+        <div class="col-md-3">
+          <a
+            href="{% url 'signup' role='ta_committee' %}"
+            class="btn btn-danger btn-block"
+            >TA Committee</a
+          >
+        </div>
+        <div class="col-md-3">
+          <a
+            href="{% url 'signup' role='instructor' %}"
+            class="btn btn-secondary btn-block"
+            >Instructor</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer><p>© 2024 Florida Atlantic University</p></footer>
+  </body>
+</html>
